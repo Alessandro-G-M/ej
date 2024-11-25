@@ -37,9 +37,9 @@ class Rectangle(Point):
     
 class Square(Rectangle):
     
-    def __init__(self, bottom_left_corner: Point, height: float, width: float):
+    def __init__(self, bottom_left_corner: Point, side_length: float):
         
-       super().__init__(bottom_left_corner, height, width)
+       super().__init__(bottom_left_corner, height=side_length, width=side_length)
        
        
        
