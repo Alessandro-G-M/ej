@@ -1,10 +1,10 @@
 class Point:
   definition: str = "Entidad geometrica abstracta que representa una ubicación en un espacio."
-  def __init__(self, x: float=0, y: float=0):
+  def __init__(self, x:float = 0, y:float = 0):
     self.x = x
     self.y = y
 
-  def move(self, new_x: float, new_y: float):
+  def move(self, new_x:float, new_y:float):
     self.x = new_x
     self.y = new_y
 
@@ -12,21 +12,19 @@ class Point:
     self.x = 0
     self.y = 0
 
-  def compute_distance(self, point: "Point") -> float:
+  def compute_distance(self, point:"Point") -> float:
     distance = ((self.x - point.x)**2+(self.y - point.y)**2)**(0.5)
     return distance
 
 
 
 class Rectangle:
-    def __init__(self, bottom_left_corner:Point,height:float,width:float):
+    def __init__(self, bottom_left_corner:Point, height:float, width:float):
         self.height = height
         self.width = width
-        
-        
+          
     def compute_area(self) -> float:
         return self.height * self.width
-    
     
     def compute_perimeter(self) -> float:
         return 2*(self.height + self.width)
@@ -34,18 +32,12 @@ class Rectangle:
     
 class Square(Rectangle):
     
-    def __init__(self, bottom_left_corner: Point, side_lenght:float):
-      super().__init__(bottom_left_corner, height=side_lenght, width=side_lenght)
+    def __init__(self, bottom_left_corner:Point, side_length:float):
+      super().__init__(bottom_left_corner, height = side_length, width = side_length) 
        
-       
-       
-    def compute_interference(self, point:Point) -> bool:
-    
-              
+    def compute_interference(self, point:Point) -> bool:          
       inside_x = self.x <= point.x <= self.x + self.width
-        
-      inside_y = self.y <= point.y <= self.x + self.height
-        
+      inside_y = self.y <= point.y <= self.x + self.height  
       return inside_x and inside_y
         
           
@@ -73,7 +65,7 @@ class Line:
     
 
 
-class Rectangle_Lines:
+class RectangleLines:
   
   def __init__(self, bottom_left_corner:Point, height:float, width:float):
     self.height = height
@@ -85,29 +77,24 @@ class Rectangle_Lines:
     self.top_right_corner = Point(bottom_left_corner.x + width,bottom_left_corner.y+height)
     self.bottom_right_corner = Point(bottom_left_corner.x + width, bottom_left_corner.y)
     
-    
     #* Define los segmentos del Rectangulo
     self.bottom_edge = Line(self.bottom_left_corner,self.bottom_right_corner)
     self.left_edge = Line(self.bottom_left_corner,self.top_left_corner)
     self.right_edge = Line(self.bottom_right_corner,self.top_right_corner)
     self.top_edge = Line(self.top_left_corner,self.top_right_corner)
         
-        
   def compute_area(self) -> float:
     return self.height * self.width
-    
-    
+      
   def compute_perimeter(self) -> float:
     return 2*(self.height + self.width)
 
 
-
-   
-    
+  
 a = Line(Point(10,2),Point(1,2))
 
-rec = Rectangle_Lines(Point(0,2),Point(5,10))
+rec = RectangleLines(Point(0,2),5,10)
 
 print(a.compute_horizontal_cross())
 
-print(rec.line1)     
+print(rec.top_edge)
